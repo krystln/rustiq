@@ -1,0 +1,38 @@
+{
+	"collections": [
+		{
+			"name": "Favourites",
+			"product_ids": ["id3", "id4"]
+		},
+		{
+			"name": "Polpular",
+			"product_ids": ["id1", "id2"]
+		}
+	],
+	"products": [
+		{
+			"id": "id1",
+			"name": "Product 1",
+			"price": 100,
+			"image_url": "http://placehold.it/200x200"
+		},
+		{
+			"id": "id2",
+			"name": "Product 2",
+			"price": 200,
+			"image_url": "http://placehold.it/200x200"
+		},
+		{
+			"id": "id3",
+			"name": "Product 3",
+			"price": 300,
+			"image_url": "http://placehold.it/200x200"
+		},
+		{
+			"id": "id4",
+			"name": "Product 4",
+			"price": 400,
+			"image_url": "http://placehold.it/200x200"
+		}
+	]
+}
