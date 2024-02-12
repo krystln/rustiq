@@ -7,7 +7,7 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"db:push": "prisma db push --preview-feature"
+		"db:push": "prisma db push"
 	},
 	"dependencies": {
 		"@tanstack/react-query": "^5.20.1",
