@@ -1,9 +1,10 @@
-import Link from "next/link";
+import Collection from "@/components/collection";
+import Links from "@/components/links";
 
 export default function Home() {
 	return (
 		<main>
-			<Header></Header>
+			<Hero />
 			<Popular />
 		</main>
 	);
@@ -11,16 +12,18 @@ export default function Home() {
 
 const Popular = () => {
 	return (
-		<section className="w-full flex h-[40vh]">
+		<section className="w-full flex">
 			<div className="flex-1 border text-3xl font-bold text-center align-center">
 				Most Polpular Products
 			</div>
-			<div className="flex-[3] border w-full"></div>
+			<div className="flex-[3] border w-full">
+				<Collection />
+			</div>
 		</section>
 	);
 };
 
-const Header = () => {
+const Hero = () => {
 	return (
 		<header
 			className="text-xl h-[80vh] flex flex-col justify-center items-center text-white relative select-none"
@@ -31,33 +34,14 @@ const Header = () => {
 			}}>
 			<h1 className="font-semibold text-3xl pointer-events-none">RustiQ</h1>
 			<div className="flex flex-row justify-around py-4">
-				{[
-					{
-						name: "Collection",
-						link: "/collections"
-					},
-					{
-						name: "Shop",
-						link: "/shop"
-					},
-					{
-						name: "Wishlist",
-						link: "/wishlist"
-					},
-					{
-						name: "Login",
-						link: "/login"
-					}
-				].map((data, index) => {
-					return (
-						<Link
-							key={index}
-							href={data.link}
-							className="hover:bg-black px-4 py-2 rounded-full">
-							{data.name}
-						</Link>
-					);
-				})}
+				<Links
+					linkData={[
+						{ name: "Collection", link: "/collections" },
+						{ name: "Shop", link: "/shop" },
+						{ name: "Wishlist", link: "/wishlist" },
+						{ name: "Login", link: "/login" }
+					]}
+				/>
 			</div>
 
 			<div className="text-center my-24 mx-20">
