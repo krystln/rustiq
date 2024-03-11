@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useSearchParams } from "next/navigation";
 
 import {
   Form,
@@ -228,8 +229,10 @@ const RegisterForm = () => {
 };
 
 const AuthForm = () => {
+  const register = useSearchParams().get("register");
+
   return (
-    <Tabs defaultValue="login" className="w-1/4">
+    <Tabs defaultValue={!register ? "login" : "register"} className="w-1/4">
       <TabsList className="w-full bg-gray-950">
         <TabsTrigger className="w-full" value="login">
           Login
