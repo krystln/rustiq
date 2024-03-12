@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import {
   Form,
@@ -28,6 +28,8 @@ import Github from "/public/icons/github.svg";
 import { Eye, EyeOff } from "lucide-react";
 
 const LoginForm = () => {
+  const router = useRouter();
+
   const formSChema = z.object({
     email: z
       .string()
@@ -49,9 +51,25 @@ const LoginForm = () => {
     },
   });
 
-  function onSubmit(data: z.infer<typeof formSChema>) {
+  async function onSubmit(data: z.infer<typeof formSChema>) {
+    // e.prevent.default();
     setIsPasswordVisible(false);
-    console.log(data);
+    try {
+      const session = await fetch("/api/v0.1/auth", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      alert(session.statusText);
+      console.log(session);
+
+      router.push("/");
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   return (
