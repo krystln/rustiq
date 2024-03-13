@@ -3,7 +3,7 @@
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -288,5 +288,13 @@ const AuthForm = () => {
   );
 };
 
-export default AuthForm;
+const Auth = () => {
+  return (
+    <Suspense>
+      <AuthForm />
+    </Suspense>
+  );
+};
+
+export default Auth;
 export { LoginForm, RegisterForm };
