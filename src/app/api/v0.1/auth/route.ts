@@ -16,10 +16,15 @@ const POST = async (req: NextRequest, res: NextResponse) => {
 
     if (verifyLogin(email, password)) {
       // console.log("Redirecting to /");
-      cookies().set("session", JSON.stringify({ email, name: "John Doe" }), {
-        path: "/",
-        expires: Date.now() + 1000 * 30,
-      });
+      const temp = cookies().set(
+        "currentUser",
+        JSON.stringify({ email, name: "John Doe" }),
+        {
+          expires: Date.now() + 1000 * 60 * 5,
+        },
+      );
+
+      console.log(temp);
 
       return new NextResponse("Logged in", { status: 200 });
     } else {
