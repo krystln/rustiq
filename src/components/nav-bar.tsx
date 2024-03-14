@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   NavigationMenu,
@@ -15,19 +15,21 @@ import {
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
 
-// type contentType = {
-//   text: string;
-//   link: string;
-// };
-
-// type propType =
-//   | {
-//       triggerName: string;
-//       content: contentType[];
-//     }[]
-//   | null;
+import { getUserData } from "@/lib/cookie-handling";
+import type { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 
 const Navbar: React.FC = () => {
+  const [user, setUser] = useState<RequestCookie | null>(null);
+
+  useEffect(() => {
+    const fetcher = async () => {
+      const userData = await getUserData();
+      setUser(userData);
+    };
+
+    fetcher();
+  });
+
   return (
     <>
       <NavigationMenu>
@@ -35,7 +37,7 @@ const Navbar: React.FC = () => {
           <NavigationMenuItem className="">
             <NavigationMenuTrigger>Home</NavigationMenuTrigger>
             <NavigationMenuContent className="flex shrink-0 flex-col p-4">
-              <Link href={"/test"}>
+              <Link href={"/"}>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Home
                 </NavigationMenuLink>
@@ -46,22 +48,32 @@ const Navbar: React.FC = () => {
             <NavigationMenuTrigger>Products</NavigationMenuTrigger>
             <NavigationMenuContent className="flex shrink-0 flex-col p-4">
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                <Link href={"/test"}>Home</Link>
+                <Link href={"/products"}>Home</Link>
               </NavigationMenuLink>
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem className="">
             <NavigationMenuTrigger>You</NavigationMenuTrigger>
             <NavigationMenuContent className="flex shrink-0 flex-col p-4">
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                <Link href={"/test"}>Profile</Link>
-              </NavigationMenuLink>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                <Link href={"/test"}>Cart</Link>
-              </NavigationMenuLink>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                <Link href={"/test"}>Previous Orders</Link>
-              </NavigationMenuLink>
+              {!user ? (
+                <div>No user Present</div>
+              ) : (
+                <>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    <Link href={"/profile"}>Profile</Link>
+                  </NavigationMenuLink>
+                  <Link href={"/cart"}>
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      Cart
+                    </NavigationMenuLink>
+                  </Link>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    <Link href={"/orders"}>Previous Orders</Link>
+                  </NavigationMenuLink>
+                </>
+              )}
             </NavigationMenuContent>
           </NavigationMenuItem>
         </NavigationMenuList>
