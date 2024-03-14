@@ -7,4 +7,9 @@ async function deleteCookies() {
   console.log("Cookies deleted");
 }
 
-export { deleteCookies };
+async function createCookies() {
+  cookies().set("currentUser", "test");
+  console.log("Cookies created");
+}
+
+export { deleteCookies, createCookies };
