@@ -9,7 +9,7 @@ const ProductCard = async ({ id }: { id: number }) => {
 
   try {
     const response = await fetch(
-      `http://localhost:3000//api/v0.1/products/${id}`,
+      `http://localhost:3000/api/v0.1/products/${id}`,
     )
       .then((res) => (res.status === 200 ? res.json() : null))
       .catch((e) => console.error(e));
@@ -27,7 +27,7 @@ const ProductCard = async ({ id }: { id: number }) => {
         height={210}
       />
       <CardTitle className="flex items-center justify-between py-2 text-xl">
-        <div>{product?.name}</div>
+        <div>{product?.name ?? "NULL"}</div>
         <Button variant="outline" className="px-2">
           <span className="material-symbols-outlined">shopping_cart</span>
         </Button>
