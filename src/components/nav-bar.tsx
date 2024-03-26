@@ -1,7 +1,5 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -15,10 +13,13 @@ import {
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
 
-import { getUserData } from "@/lib/cookie-handling";
 import type { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
+import { useEffect, useState } from "react";
+import { getUserData } from "@/lib/cookie-handling";
 
 const Navbar: React.FC = () => {
+  // const user = cookies().get("currentUser") ?? null;
+
   const [user, setUser] = useState<RequestCookie | null>(null);
 
   useEffect(() => {
@@ -34,43 +35,35 @@ const Navbar: React.FC = () => {
     <>
       <NavigationMenu>
         <NavigationMenuList>
-          <NavigationMenuItem className="">
-            <NavigationMenuTrigger>Home</NavigationMenuTrigger>
-            <NavigationMenuContent className="flex shrink-0 flex-col p-4">
-              <Link href={"/"}>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Home
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-          <NavigationMenuItem className="">
-            <NavigationMenuTrigger>Products</NavigationMenuTrigger>
-            <NavigationMenuContent className="flex shrink-0 flex-col p-4">
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                <Link href={"/products"}>Home</Link>
-              </NavigationMenuLink>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
+          {navMenu.map((menu) => {
+            return (
+              <NavigationMenuItem key={menu.title}>
+                <NavigationMenuTrigger>{menu.title}</NavigationMenuTrigger>
+                <NavigationMenuContent className="flex w-24 flex-col p-4">
+                  {menu.sub.map((sub) => (
+                    <NavigationMenuLink
+                      key={sub.title}
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      <Link href={sub.link}>{sub.title}</Link>
+                    </NavigationMenuLink>
+                  ))}
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            );
+          })}
           <NavigationMenuItem className="">
             <NavigationMenuTrigger>You</NavigationMenuTrigger>
-            <NavigationMenuContent className="flex shrink-0 flex-col p-4">
+            <NavigationMenuContent className="flex w-48 flex-col text-nowrap p-4">
               {!user ? (
-                <div>No user Present</div>
+                <div>Log in</div>
               ) : (
                 <>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    <Link href={"/profile"}>Profile</Link>
+                    <Link href="/profile">Profile</Link>
                   </NavigationMenuLink>
-                  <Link href={"/cart"}>
-                    <NavigationMenuLink
-                      className={navigationMenuTriggerStyle()}
-                    >
-                      Cart
-                    </NavigationMenuLink>
-                  </Link>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    <Link href={"/orders"}>Previous Orders</Link>
+                    <Link href="/logout">Logout</Link>
                   </NavigationMenuLink>
                 </>
               )}
@@ -81,5 +74,21 @@ const Navbar: React.FC = () => {
     </>
   );
 };
+
+const navMenu = [
+  {
+    title: "Everything",
+    sub: [
+      {
+        title: "Home",
+        link: "/",
+      },
+      {
+        title: "Products",
+        link: "/products",
+      },
+    ],
+  },
+];
 
 export default Navbar;
