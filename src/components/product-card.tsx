@@ -3,7 +3,6 @@ import Image from "next/image";
 import { Badge } from "./ui/badge";
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { error } from "console";
 
 const ProductCard = async ({ id }: { id: number }) => {
   let product: null | { id: number; name: string } = null;
