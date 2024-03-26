@@ -1,7 +1,6 @@
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import { Badge } from "./ui/badge";
-import Link from "next/link";
 import { Button } from "./ui/button";
 
 const ProductCard = async ({ id }: { id: number }) => {
@@ -9,18 +8,17 @@ const ProductCard = async ({ id }: { id: number }) => {
   let fetchError: null | { type: string; message: string } = null;
 
   try {
-    const [data, error] = await fetch(
-      `http://localhost:3000/api/v0.1/products?id=${id}`,
+    const data = await fetch(
+      `${process.env.BASE_URL}/api/v0.1/products?id=${id}`,
     ).then((res) => res.json());
 
-    if (error) {
-      fetchError = error;
-      throw new Error(error.message);
+    if (data[1]) {
+      throw new Error(data[1].type, data[1].message);
     }
 
-    product = data;
-  } catch (e) {
-    console.error(e);
+    product = data[0];
+  } catch (error: any) {
+    fetchError = error;
   }
 
   return (
@@ -32,7 +30,7 @@ const ProductCard = async ({ id }: { id: number }) => {
         height={210}
       />
       <CardTitle className="flex items-center justify-between py-2 text-xl">
-        <div>{product?.name ?? fetchError?.message}</div>
+        {product ? <div>{product.name}</div> : <div>{fetchError?.message}</div>}
         <Button variant="outline" className="px-2">
           <span className="material-symbols-outlined">shopping_cart</span>
         </Button>
