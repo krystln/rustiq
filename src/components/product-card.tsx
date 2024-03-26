@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 
 const ProductCard = async ({ id }: { id: number }) => {
-  let product = null;
+  let product: null | { id: number; name: string } = null;
 
   try {
     const response = await fetch(
@@ -27,7 +27,7 @@ const ProductCard = async ({ id }: { id: number }) => {
         height={210}
       />
       <CardTitle className="flex items-center justify-between py-2 text-xl">
-        <div>{product.name}</div>
+        <div>{product?.name}</div>
         <Button variant="outline" className="px-2">
           <span className="material-symbols-outlined">shopping_cart</span>
         </Button>

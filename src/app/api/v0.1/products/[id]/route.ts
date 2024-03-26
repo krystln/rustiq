@@ -12,13 +12,13 @@ const GET = async (req: Request, { params }: { params: { id: number } }) => {
     }
     return new Response(
       JSON.stringify({
-        id: id,
+        id: Number(id),
         name: `Product ${id}`,
       }),
       { status: 200 },
     );
   } catch (e) {
-    return new Response(JSON.stringify(e), {
+    return new Response(JSON.stringify(null), {
       status: 404,
     });
   }
