@@ -2,7 +2,7 @@
 const nextConfig = {
   images: {
     remotePatterns: [{
-      hostname: 'placehold.it',
+      hostname: 'via.placeholder.com',
       port: '',
       pathname: '/**',
     }],
