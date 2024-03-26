@@ -6,8 +6,6 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 
 const Header = () => {
-  const session = false;
-
   return (
     <div className="flex items-center justify-center gap-4 p-2">
       <Link href="/">
