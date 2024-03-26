@@ -1,7 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import React from "react";
-import { createCookies, deleteCookies } from "../app/test";
+import { createCookies, deleteCookies } from "@/lib/cookie-handling";
 
 const Buttons = () => {
   return (
