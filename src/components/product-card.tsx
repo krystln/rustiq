@@ -3,17 +3,23 @@ import Image from "next/image";
 import { Badge } from "./ui/badge";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { error } from "console";
 
 const ProductCard = async ({ id }: { id: number }) => {
   let product: null | { id: number; name: string } = null;
+  let fetchError = null;
 
   try {
-    const response = await fetch(
-      `http://localhost:3000/api/v0.1/products/${id}`,
-    )
-      .then((res) => (res.status === 200 ? res.json() : null))
-      .catch((e) => console.error(e));
-    product = response;
+    const [data, error] = await fetch(
+      `http://localhost:3000/api/v0.1/products?id=${id}`,
+    ).then((res) => res.json());
+
+    if (error) {
+      fetchError = error;
+      throw new Error(error.message);
+    }
+
+    product = data;
   } catch (e) {
     console.error(e);
   }
@@ -27,7 +33,7 @@ const ProductCard = async ({ id }: { id: number }) => {
         height={210}
       />
       <CardTitle className="flex items-center justify-between py-2 text-xl">
-        <div>{product?.name ?? "NULL"}</div>
+        <div>{product?.name ?? fetchError.message}</div>
         <Button variant="outline" className="px-2">
           <span className="material-symbols-outlined">shopping_cart</span>
         </Button>

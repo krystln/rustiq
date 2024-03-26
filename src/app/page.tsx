@@ -7,7 +7,7 @@ export default function Home() {
     <main>
       <Header />
       <Buttons />
-      <ProductCard id={10} />
+      <ProductCard id={1} />
     </main>
   );
 }
