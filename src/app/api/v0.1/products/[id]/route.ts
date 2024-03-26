@@ -1,8 +1,15 @@
+// const invalideNumbers = 100;
+
 const GET = async (req: Request, { params }: { params: { id: number } }) => {
   try {
     const { id } = params;
 
-    console.log("id", id);
+    console.log(Number(id));
+
+    if (Number(id) === 100) {
+      console.log("Product not found");
+      throw new Error("Product not found");
+    }
     return new Response(
       JSON.stringify({
         id: id,
@@ -11,8 +18,9 @@ const GET = async (req: Request, { params }: { params: { id: number } }) => {
       { status: 200 },
     );
   } catch (e) {
-    console.error(e);
-    return new Response(JSON.stringify(e), { status: 500 });
+    return new Response(JSON.stringify(e), {
+      status: 404,
+    });
   }
 };
 
