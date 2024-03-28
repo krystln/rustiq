@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import React from "react";
+import { Suspense } from "react";
 
 const Page = () => {
   const params = useSearchParams();
@@ -10,4 +10,12 @@ const Page = () => {
   return <div>Page for {id}</div>;
 };
 
-export default Page;
+const Over = () => {
+  return (
+    <Suspense>
+      <Page />
+    </Suspense>
+  );
+};
+
+export default Over;
