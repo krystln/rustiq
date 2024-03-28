@@ -41,12 +41,13 @@ const Navbar: React.FC = () => {
                 <NavigationMenuTrigger>{menu.title}</NavigationMenuTrigger>
                 <NavigationMenuContent className="flex w-24 flex-col p-4">
                   {menu.sub.map((sub) => (
-                    <NavigationMenuLink
+                    <Link
+                      href={sub.link}
                       key={sub.title}
                       className={navigationMenuTriggerStyle()}
                     >
-                      <Link href={sub.link}>{sub.title}</Link>
-                    </NavigationMenuLink>
+                      {sub.title}
+                    </Link>
                   ))}
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -59,11 +60,17 @@ const Navbar: React.FC = () => {
                 <div>Log in</div>
               ) : (
                 <>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    <Link href="/profile">Profile</Link>
+                  <NavigationMenuLink
+                    href="/profile"
+                    className={navigationMenuTriggerStyle()}
+                  >
+                    Profile
                   </NavigationMenuLink>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    <Link href="/logout">Logout</Link>
+                  <NavigationMenuLink
+                    href="/logout"
+                    className={navigationMenuTriggerStyle()}
+                  >
+                    Logout
                   </NavigationMenuLink>
                 </>
               )}
