@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
+import Header from "@/components/header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,12 +15,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  data,
 }: Readonly<{
   children: React.ReactNode;
+  data: React.ReactNode;
 }>) {
   return (
     <html lang="en">
       <body className={inter.className}>
+        <Header />
+        <div>{data}</div>
         {children}
         <SpeedInsights />
         <Analytics />
