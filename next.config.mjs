@@ -6,6 +6,15 @@ const nextConfig = {
       port: '',
       pathname: '/**',
     }],
+  },
+  async redirects() {
+    return [
+      {
+        source: '/auth/google',
+        destination: process.env.GOOGLE_AUTH_URL,
+        permanent: true,
+      },
+    ];
   }
 };
 
