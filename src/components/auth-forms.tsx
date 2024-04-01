@@ -248,9 +248,13 @@ const RegisterForm = () => {
 
 const AuthForm = () => {
   const register = useSearchParams().get("register");
+  const router = useRouter();
 
   return (
-    <Tabs defaultValue={!register ? "login" : "register"} className="w-1/4">
+    <Tabs
+      defaultValue={register === null ? "login" : "register"}
+      className="w-1/4"
+    >
       <TabsList className="w-full bg-gray-950">
         <TabsTrigger className="w-full" value="login">
           Login
@@ -262,13 +266,16 @@ const AuthForm = () => {
       <div className="my-2 rounded-md border p-4">
         <TabsContent value="login" className="flex flex-col items-center">
           <div className="flex w-full grow gap-2">
-            <a
-              className="flex h-9 grow items-center justify-center gap-2 whitespace-nowrap rounded-md px-4 py-2 text-sm font-medium transition-colors hover:cursor-pointer hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-              href={`${process.env.NEXT_PUBLIC_GOOGLE_AUTH_URL}` ?? "/"}
+            <Button
+              variant="ghost"
+              className="flex grow gap-2"
+              onClick={() => {
+                router.push("/");
+              }}
             >
               <Image src={Google} alt=" " width={25} height={25} />
               <p>Google</p>
-            </a>
+            </Button>
             <Button variant="ghost" className="flex grow gap-2">
               <Image src={Github} alt=" " width={30} height={30} />
               <p>Github</p>
