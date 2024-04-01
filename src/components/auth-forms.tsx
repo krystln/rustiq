@@ -270,7 +270,7 @@ const AuthForm = () => {
               variant="ghost"
               className="flex grow gap-2"
               onClick={() => {
-                router.push("/");
+                router.push("/auth/google");
               }}
             >
               <Image src={Google} alt=" " width={25} height={25} />
