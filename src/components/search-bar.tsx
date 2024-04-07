@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useForm } from "react-hook-form";
 import { debounce } from "@/lib/utils";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const Searchbar = () => {
   const formSchema = z.object({
@@ -47,9 +47,9 @@ const Searchbar = () => {
     };
   }, [form, form.getValues("search")]);
 
-  useEffect(() => {
-    console.log(result);
-  }, [result]);
+  // useEffect(() => {
+  //   console.log(result);
+  // }, [result]);
 
   return (
     <>
