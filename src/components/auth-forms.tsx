@@ -248,7 +248,6 @@ const RegisterForm = () => {
 
 const AuthForm = () => {
   const register = useSearchParams().get("register");
-  const router = useRouter();
 
   return (
     <Tabs
@@ -265,22 +264,7 @@ const AuthForm = () => {
       </TabsList>
       <div className="my-2 rounded-md border p-4">
         <TabsContent value="login" className="flex flex-col items-center">
-          <div className="flex w-full grow gap-2">
-            <Button
-              variant="ghost"
-              className="flex grow gap-2"
-              onClick={() => {
-                router.push("/auth/google");
-              }}
-            >
-              <Image src={Google} alt=" " width={25} height={25} />
-              <p>Google</p>
-            </Button>
-            <Button variant="ghost" className="flex grow gap-2">
-              <Image src={Github} alt=" " width={30} height={30} />
-              <p>Github</p>
-            </Button>
-          </div>
+          <ThirdPartyAuth />
           <div className="my-3.5 flex w-full items-center gap-2">
             <Separator className="shrink" />
             <p className="whitespace-nowrap text-sm text-gray-500">
@@ -295,6 +279,35 @@ const AuthForm = () => {
         </TabsContent>
       </div>
     </Tabs>
+  );
+};
+
+const ThirdPartyAuth = () => {
+  const router = useRouter();
+
+  return (
+    <div className="flex w-full grow gap-2">
+      <Button
+        variant="ghost"
+        className="flex grow gap-2"
+        onClick={() => {
+          router.push("/auth/google");
+        }}
+      >
+        <Image src={Google} alt=" " width={25} height={25} />
+        <p>Google</p>
+      </Button>
+      <Button
+        variant="ghost"
+        className="flex grow gap-2"
+        onClick={() => {
+          router.push("/auth/github");
+        }}
+      >
+        <Image src={Github} alt=" " width={30} height={30} />
+        <p>Github</p>
+      </Button>
+    </div>
   );
 };
 
