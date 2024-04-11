@@ -5,6 +5,10 @@ import React, { useEffect } from "react";
 
 const Page = () => {
   useEffect(() => {
+    const data = async (token: string) => {
+      await fetchUserInfo(token);
+    };
+
     const accessParameters = window.location.hash
       .split("&")
       .map((item) => item.split("="));
@@ -23,6 +27,7 @@ const Page = () => {
 
     localStorage.setItem("RustiqAccess", JSON.stringify(RustiqAccess));
     console.log(JSON.stringify(RustiqAccess));
+    data(RustiqAccess.access_token);
     window.location.href = "/";
   }, []);
 
