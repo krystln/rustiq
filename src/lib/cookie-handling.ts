@@ -3,13 +3,13 @@
 import { cookies } from "next/headers";
 
 export async function getUserData() {
-  const user = cookies().get("currentUser") ?? null;
+  const user = cookies().get("user")?.value ?? null;
   return user;
 }
 
 export async function deleteCookies() {
   try {
-    cookies().delete("currentUser");
+    cookies().delete("user");
     console.log("Cookies deleted");
   } catch (e) {
     console.error(e);
