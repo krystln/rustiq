@@ -1,12 +1,15 @@
 "use client";
 
 import fetchUserInfo from "@/lib/auth-functions";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
-const Page = async () => {
+// async function not allowed in useEffect, but required for fetchUserInfo... might be fixed..
+
+const Page = () => {
   useEffect(() => {
     const data = async (token: string) => {
       await fetchUserInfo(token);
+      window.location.href = "/";
     };
 
     const accessParameters = window.location.hash
@@ -26,9 +29,9 @@ const Page = async () => {
     };
 
     localStorage.setItem("RustiqAccess", JSON.stringify(RustiqAccess));
-    console.log(JSON.stringify(RustiqAccess));
+    // console.log(JSON.stringify(RustiqAccess));
+
     data(RustiqAccess.access_token);
-    window.location.href = "/";
   }, []);
 
   return (
