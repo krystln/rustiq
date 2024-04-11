@@ -16,7 +16,8 @@ const fetchUserInfo = async (access_token: string) => {
       console.error(err);
     });
 
-  cookies().set("user", JSON.stringify(userData));
+  console.log("Cookies set with user data : ", JSON.stringify(await userData));
+  cookies().set("user", JSON.stringify(await userData));
 };
 
 export default fetchUserInfo;
