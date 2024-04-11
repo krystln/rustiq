@@ -3,6 +3,7 @@
 import { cookies } from "next/headers";
 
 const fetchUserInfo = async (access_token: string) => {
+  // console.log("Fetching user data");
   const userData = await fetch(
     "https://www.googleapis.com/oauth2/v2/userinfo",
     {
@@ -16,7 +17,7 @@ const fetchUserInfo = async (access_token: string) => {
       console.error(err);
     });
 
-  console.log("Cookies set with user data : ", JSON.stringify(await userData));
+  // console.log("Cookies set with user data : ", JSON.stringify(await userData));
   cookies().set("user", JSON.stringify(await userData));
 };
 
