@@ -3,7 +3,7 @@
 import fetchUserInfo from "@/lib/auth-functions";
 import React, { useEffect } from "react";
 
-const Page = () => {
+const Page = async () => {
   useEffect(() => {
     const data = async (token: string) => {
       await fetchUserInfo(token);
