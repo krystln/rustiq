@@ -1,8 +1,7 @@
-import { cookies } from "next/headers";
 import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-  const currentUser = request.cookies.get("currentUser");
+  const currentUser = request.cookies.get("user");
 
   // if (currentUser && !request.nextUrl.pathname.startsWith("/dashboard")) {
   // 	return Response.redirect(new URL("/dashboard", request.url));
@@ -10,11 +9,11 @@ export function middleware(request: NextRequest) {
 
   if (request.nextUrl.pathname.startsWith("/cart")) {
     if (!!currentUser) {
-      console.log("User is logged in", currentUser);
+      // console.log("User is logged in", currentUser);
       return;
     }
 
-    console.log("Redirecting to /login", currentUser);
+    // console.log("Redirecting to /login", currentUser);
     return Response.redirect(new URL("/login", request.url));
   }
 }
