@@ -3,8 +3,6 @@
 import fetchUserInfo from "@/lib/auth-functions";
 import { useEffect } from "react";
 
-// async function not allowed in useEffect, but required for fetchUserInfo... might be fixed..
-
 const Page = () => {
   useEffect(() => {
     const data = async (token: string) => {
