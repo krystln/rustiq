@@ -1,7 +1,13 @@
+import { cookies } from "next/headers";
 import React from "react";
 
 const Page = () => {
-  return <div>Profile Page</div>;
+  const userData = cookies().get("user")?.value;
+  return (
+    <>
+      <div>{userData}</div>
+    </>
+  );
 };
 
 export default Page;
