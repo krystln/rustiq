@@ -31,8 +31,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className + "flex min-h-screen"}>
-        <Header />
         <div className="h-full">{data}</div>
+        <Header />
         {children}
         <SpeedInsights />
         <Analytics />
