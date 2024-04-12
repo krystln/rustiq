@@ -2,6 +2,7 @@ import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
+import GoogleIcon from "./utility";
 
 const ProductCard = async ({ id }: { id: number }) => {
   let product: null | { id: number; name: string } = null;
@@ -32,15 +33,17 @@ const ProductCard = async ({ id }: { id: number }) => {
       <CardTitle className="flex items-center justify-between py-2 text-xl">
         {product ? <div>{product.name}</div> : <div>{fetchError?.message}</div>}
         <Button variant="outline" className="px-2">
-          <span className="material-symbols-outlined">shopping_cart</span>
+          <GoogleIcon>shopping_cart</GoogleIcon>
         </Button>
       </CardTitle>
-      <CardContent className="flex flex-wrap gap-2 p-0">
-        {["test", "test2", "test3", "test4"].map((tag: string) => (
-          <Badge key={tag} className="">
-            {tag}
-          </Badge>
-        ))}
+      <CardContent className="scrollbar-none flex gap-2 overflow-x-auto p-0">
+        {["Kitchen", "simple", "unique", "test4"].map((tag, index) => {
+          return (
+            <Badge key={index} variant="default">
+              {tag}
+            </Badge>
+          );
+        })}
       </CardContent>
     </Card>
   );
