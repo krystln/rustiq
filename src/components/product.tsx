@@ -49,4 +49,23 @@ const ProductCard = async ({ id }: { id: number }) => {
   );
 };
 
+export const Product = ({ id }: { id: string }) => {
+  return (
+    <>
+      <div className="mt-10 flex gap-4">
+        <Image
+          src="http://via.placeholder.com/500x500"
+          alt=""
+          width={500}
+          height={500}
+        />
+        <div>
+          <h1 className="text-4xl font-bold">{id}</h1>
+          <span>description</span>
+        </div>
+      </div>
+    </>
+  );
+};
+
 export default ProductCard;
