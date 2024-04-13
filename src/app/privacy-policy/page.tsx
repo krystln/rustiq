@@ -2,14 +2,22 @@ import React from "react";
 
 const Page = () => {
   return (
-    <div>{`Information Collected :
+    <div>
+      {`Information Collected :
             1.Your Name
             2.Your Email Address
             3.Link to your profile picture
 
     How We Use Your Information
 
-    We use this information to authorize your access to our services, to communicate with you, and to improve our services.
+    We use this information to authorize your access to our services, to communicate with you, and to improve our services.`}
+      <a
+        href="https://support.google.com/accounts/answer/12921417"
+        className="text-blue-500 underline"
+      >
+        How google shares data responsibly
+      </a>
+      {`
     
     Protection of Your Information
     
@@ -34,7 +42,8 @@ const Page = () => {
     
     If you have any questions or concerns about our privacy policy or how we handle your personal information, please contact us at akshitgoyal.10000@gmail.com.
     
-    `}</div>
+    `}
+    </div>
   );
 };
 
