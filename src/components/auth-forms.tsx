@@ -63,11 +63,34 @@ const LoginForm = () => {
         body: JSON.stringify(data),
       });
 
-      alert(session.statusText);
-      console.log(session);
+      switch (session.status) {
+        case 401:
+          form.setError("email", {
+            message: "Failed to login, check email & password",
+          });
+          form.setError("password", {
+            message: "Failed to login, check email & password",
+          });
+          break;
 
-      router.push("/");
+        case 404:
+          form.setError("email", {
+            message:
+              "User not found, register or try Google/Github login instead.",
+          });
+          break;
+
+        case 500:
+          throw new Error(session.statusText);
+
+        case 200:
+          router.push("/");
+          break;
+      }
     } catch (e) {
+      form.setError("root", {
+        message: "Internal error occured, please try again later.",
+      });
       console.error(e);
     }
   }
