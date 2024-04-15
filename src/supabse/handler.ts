@@ -3,11 +3,10 @@
 import { supabase } from "./client";
 
 interface Insert {
-  id?: number;
-  created_at?: string;
-  name?: string;
-  email?: string;
+  name: string;
+  email: string;
   image: string;
+  role: string;
 }
 
 export const createUser = async ({ userData }: { userData: Insert }) => {
@@ -35,5 +34,23 @@ export const verifyLogin = async (email: string, password: string) => {
   }
   return {
     status: User?.[0]?.password_hash === password ? 200 : 401,
+  };
+};
+
+export const getUser = async (email: string) => {
+  const { data: User, error } = await supabase
+    .from("User")
+    .select("id, name, email, image, role")
+    .eq("email", email);
+  if (error) {
+    console.error(error);
+    return {
+      status: 500,
+    };
+  }
+
+  return {
+    status: 200,
+    data: User,
   };
 };
