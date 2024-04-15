@@ -1,6 +1,7 @@
 "use server";
 
-import { verifyLogin } from "@/supabse/handler";
+import { getUser, verifyLogin } from "@/supabse/handler";
+import { cookies } from "next/headers";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
@@ -22,6 +23,12 @@ const POST = async (req: NextRequest, res: NextResponse) => {
     const verification = await verifyLogin(email, password_hash);
     switch (verification.status) {
       case 200:
+        const user = await getUser(email);
+        if (user.status === 500) {
+          return new NextResponse("Internal error occured", { status: 500 });
+        }
+
+        cookies().set("user", JSON.stringify(user.data![0]));
         return new NextResponse("Logged in", { status: 200 });
       case 401:
         return new NextResponse("Failed to login", { status: 401 });
