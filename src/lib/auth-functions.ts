@@ -1,6 +1,6 @@
 "use server";
 
-import { createUser } from "@/supabse/handler";
+import { createUser, getUser } from "@/supabse/handler";
 import { cookies } from "next/headers";
 
 const fetchUserInfo = async (access_token: string) => {
@@ -24,9 +24,13 @@ const fetchUserInfo = async (access_token: string) => {
       name: userData.name,
       email: userData.email,
       image: userData.picture,
+      role: "user",
     },
   });
-  cookies().set("user", JSON.stringify(await userData));
+
+  const user = await getUser(userData.email);
+
+  cookies().set("user", JSON.stringify(user.data![0]));
   if (error === null) console.log("Unable to save user data to database");
 };
 
