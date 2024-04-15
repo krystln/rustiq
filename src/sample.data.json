@@ -1,38 +1,184 @@
 {
-	"collections": [
-		{
-			"name": "Favourites",
-			"product_ids": ["id3", "id4"]
-		},
-		{
-			"name": "Polpular",
-			"product_ids": ["id1", "id2"]
-		}
-	],
-	"products": [
-		{
-			"id": "id1",
-			"name": "Product 1",
-			"price": 100,
-			"image_url": "http://placehold.it/200x200"
-		},
-		{
-			"id": "id2",
-			"name": "Product 2",
-			"price": 200,
-			"image_url": "http://placehold.it/200x200"
-		},
-		{
-			"id": "id3",
-			"name": "Product 3",
-			"price": 300,
-			"image_url": "http://placehold.it/200x200"
-		},
-		{
-			"id": "id4",
-			"name": "Product 4",
-			"price": 400,
-			"image_url": "http://placehold.it/200x200"
-		}
-	]
+  "products": [
+    {
+      "id": "1",
+      "name": "Modern Velvet Sofa",
+      "description": "Elegant and comfortable sofa upholstered in luxurious velvet fabric.",
+      "review": 4,
+      "price": 899.99,
+      "filter_by_room": ["Living Room"],
+      "filter_by_type": ["Sofas & Couches"]
+    },
+    {
+      "id": "2",
+      "name": "Wooden Dining Table Set",
+      "description": "Solid wood dining table with matching chairs for a rustic dining experience.",
+      "review": 4,
+      "price": 699.99,
+      "filter_by_room": ["Dining Room", "Kitchen"],
+      "filter_by_type": ["Tables", "Chairs"]
+    },
+    {
+      "id": "3",
+      "name": "Leather Recliner Armchair",
+      "description": "Plush leather armchair with reclining feature for ultimate relaxation.",
+      "review": 4,
+      "price": 499.99,
+      "filter_by_room": ["Living Room", "Home Office"],
+      "filter_by_type": ["Chairs"]
+    },
+    {
+      "id": "4",
+      "name": "Contemporary Coffee Table",
+      "description": "Sleek and minimalist coffee table with a tempered glass top.",
+      "review": 5,
+      "price": 299.99,
+      "filter_by_room": ["Living Room"],
+      "filter_by_type": ["Tables"]
+    },
+    {
+      "id": "5",
+      "name": "Queen Size Platform Bed",
+      "description": "Stylish platform bed with a tufted headboard for modern bedrooms.",
+      "review": 4,
+      "price": 799.99,
+      "filter_by_room": ["Bedroom"],
+      "filter_by_type": ["Beds"]
+    },
+    {
+      "id": "6",
+      "name": "Oak Wood Dresser",
+      "description": "Classic oak wood dresser with ample storage space for clothes and essentials.",
+      "review": 4,
+      "price": 449.99,
+      "filter_by_room": ["Bedroom"],
+      "filter_by_type": ["Dressers & Chests"]
+    },
+    {
+      "id": "7",
+      "name": "L-shaped Sectional Sofa",
+      "description": "Spacious L-shaped sectional sofa with soft cushions for family gatherings.",
+      "review": 5,
+      "price": 1299.99,
+      "filter_by_room": ["Living Room"],
+      "filter_by_type": ["Sofas & Couches"]
+    },
+    {
+      "id": "8",
+      "name": "Industrial Style Bookshelf",
+      "description": "Sturdy metal and wood bookshelf with an industrial design for a trendy look.",
+      "review": 4,
+      "price": 349.99,
+      "filter_by_room": ["Living Room", "Home Office"],
+      "filter_by_type": ["Cabinets & Shelving"]
+    },
+    {
+      "id": "9",
+      "name": "Upholstered Accent Chair",
+      "description": "Stylish accent chair upholstered in vibrant fabric, perfect for adding a pop of color.",
+      "review": 4,
+      "price": 199.99,
+      "filter_by_room": ["Living Room"],
+      "filter_by_type": ["Chairs"]
+    },
+    {
+      "id": "10",
+      "name": "Outdoor Patio Set",
+      "description": "Weather-resistant patio set including a table and chairs for outdoor entertaining.",
+      "review": 4,
+      "price": 599.99,
+      "filter_by_room": ["Outdoor"],
+      "filter_by_type": ["Outdoor Furniture"]
+    },
+    {
+      "id": "11",
+      "name": "Mid-Century Modern Sideboard",
+      "description": "Iconic mid-century modern sideboard with tapered legs and retro charm.",
+      "review": 5,
+      "price": 549.99,
+      "filter_by_room": ["Dining Room", "Living Room"],
+      "filter_by_type": ["Cabinets & Shelving"]
+    },
+    {
+      "id": "12",
+      "name": "Plush Velvet Armchair",
+      "description": "Luxurious velvet armchair with deep seating for maximum comfort.",
+      "review": 4,
+      "price": 399.99,
+      "filter_by_room": ["Living Room"],
+      "filter_by_type": ["Chairs"]
+    },
+    {
+      "id": "13",
+      "name": "Glass Top Dining Table",
+      "description": "Sleek glass top dining table with a metal base for contemporary dining spaces.",
+      "review": 4,
+      "price": 449.99,
+      "filter_by_room": ["Dining Room", "Kitchen"],
+      "filter_by_type": ["Tables"]
+    },
+    {
+      "id": "14",
+      "name": "Tufted Fabric Ottoman",
+      "description": "Elegant tufted fabric ottoman that doubles as a coffee table or extra seating.",
+      "review": 4,
+      "price": 149.99,
+      "filter_by_room": ["Living Room"],
+      "filter_by_type": ["Ottomans"]
+    },
+    {
+      "id": "15",
+      "name": "King Size Canopy Bed",
+      "description": "Majestic canopy bed with a sturdy metal frame for a grand bedroom statement.",
+      "review": 5,
+      "price": 1199.99,
+      "filter_by_room": ["Bedroom"],
+      "filter_by_type": ["Beds"]
+    },
+    {
+      "id": "16",
+      "name": "Leather Sectional Sofa",
+      "description": "Luxurious leather sectional sofa with adjustable headrests for personalized comfort.",
+      "review": 5,
+      "price": 1599.99,
+      "filter_by_room": ["Living Room"],
+      "filter_by_type": ["Sofas & Couches"]
+    },
+    {
+      "id": "17",
+      "name": "Wooden Bar Stool Set",
+      "description": "Set of wooden bar stools with a classic design, perfect for kitchen islands or bars.",
+      "review": 4,
+      "price": 249.99,
+      "filter_by_room": ["Kitchen", "Bar"],
+      "filter_by_type": ["Chairs"]
+    },
+    {
+      "id": "18",
+      "name": "Velvet Upholstered Bench",
+      "description": "Plush velvet upholstered bench with a sleek metal base for entryways or bedrooms.",
+      "review": 4,
+      "price": 179.99,
+      "filter_by_room": ["Living Room", "Bedroom"],
+      "filter_by_type": ["Benches"]
+    },
+    {
+      "id": "19",
+      "name": "Glass Display Cabinet",
+      "description": "Elegant glass display cabinet with adjustable shelves to showcase collectibles.",
+      "review": 4,
+      "price": 599.99,
+      "filter_by_room": ["Living Room", "Dining Room"],
+      "filter_by_type": ["Cabinets & Shelving"]
+    },
+    {
+      "id": "20",
+      "name": "Modern Swivel Chair",
+      "description": "Contemporary swivel chair upholstered in durable fabric, ideal for home offices.",
+      "review": 4,
+      "price": 299.99,
+      "filter_by_room": ["Living Room", "Home Office"],
+      "filter_by_type": ["Chairs"]
+    }
+  ]
 }
