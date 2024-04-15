@@ -119,7 +119,7 @@ const Profile = ({ data }: { data: any }) => {
         className="group flex items-center justify-center gap-2"
       >
         <Image
-          src={data.picture}
+          src={data.image}
           alt="profile"
           height={50}
           width={50}
