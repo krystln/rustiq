@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import GoogleIcon from "@/components/utility";
 import { useRouter } from "next/navigation";
 
-const Page = ({ params }: { params: { product_id: string } }) => {
+const Page = ({ params }: { params: { product_name: string } }) => {
   const router = useRouter();
 
   return (
@@ -14,7 +14,7 @@ const Page = ({ params }: { params: { product_id: string } }) => {
         <Button onClick={() => router.back()} variant="ghost" className="">
           <GoogleIcon className="scale-125">arrow_back</GoogleIcon>
         </Button>
-        <Product id={params.product_id} />
+        <Product name={params.product_name} />
       </div>
     </div>
   );
