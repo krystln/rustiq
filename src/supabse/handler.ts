@@ -54,3 +54,29 @@ export const getUser = async (email: string) => {
     data: User,
   };
 };
+
+export const getProductByParameter = async (
+  productParameter: "name" | "id",
+  productParameterValue: string,
+) => {
+  try {
+    const { data: Product, error } = await supabase
+      .from("Products")
+      .select("*")
+      .eq(productParameter, productParameterValue);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    return {
+      status: 200,
+      data: Product,
+    };
+  } catch (e) {
+    console.error(e);
+    return {
+      status: 500,
+    };
+  }
+};

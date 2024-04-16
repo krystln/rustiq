@@ -3,6 +3,8 @@ import Image from "next/image";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import GoogleIcon from "./utility";
+import { getProductByParameter } from "@/supabse/handler";
+import { Heart } from "./buttons";
 
 const ProductCard = async ({ id }: { id: number }) => {
   let product: null | { id: number; name: string } = null;
@@ -49,7 +51,11 @@ const ProductCard = async ({ id }: { id: number }) => {
   );
 };
 
-export const Product = ({ id }: { id: string }) => {
+export const Product = async ({ name }: { name: string }) => {
+  const { status, data } = await getProductByParameter("name", name);
+
+  const product = data![0];
+
   return (
     <>
       <div className="mt-10 flex gap-4">
@@ -60,8 +66,17 @@ export const Product = ({ id }: { id: string }) => {
           height={500}
         />
         <div>
-          <h1 className="text-4xl font-bold">{id}</h1>
-          <span>description</span>
+          <h1 className="text-4xl font-extrabold uppercase">{product.name}</h1>
+          <Heart rating={2} />
+          <span>
+            {product.filter_by_room?.map((room, index) => {
+              return <Badge key={index}>{room}</Badge>;
+            })}
+            {product.filter_by_type?.map((room, index) => {
+              return <Badge key={index}>{room}</Badge>;
+            })}
+          </span>
+          <p>{product.description}</p>
         </div>
       </div>
     </>
