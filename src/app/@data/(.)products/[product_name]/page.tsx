@@ -22,7 +22,7 @@ const Page = ({ params }: { params: { product_name: string } }) => {
         <Button onClick={() => router.back()} variant="ghost" className="">
           <GoogleIcon className="scale-125">arrow_back</GoogleIcon>
         </Button>
-        <Product name={params.product_name} />
+        <Product name={params.product_name.replace(/-/g, " ")} />
       </div>
     </div>
   );
