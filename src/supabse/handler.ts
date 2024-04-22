@@ -9,8 +9,24 @@ interface Insert {
   role: string;
 }
 
+type Product = {
+  id: number;
+  name: string;
+  price: number;
+  review: number;
+  description: string;
+  filter_by_room: string[];
+  filter_by_type: string[];
+};
+
 export const createUser = async ({ userData }: { userData: Insert }) => {
   const { error } = await supabase.from("User").insert(userData);
+  // console.log(error);
+  return error;
+};
+
+export const createProduct = async (productData: Product[]) => {
+  const { error } = await supabase.from("Products").insert(productData);
   // console.log(error);
   return error;
 };
@@ -57,7 +73,7 @@ export const getUser = async (email: string) => {
 
 export const getProductByParameter = async (
   productParameter: "name" | "id",
-  productParameterValue: string,
+  productParameterValue: string | number,
 ) => {
   try {
     const { data: Product, error } = await supabase
@@ -71,12 +87,19 @@ export const getProductByParameter = async (
 
     return {
       status: 200,
-      data: Product,
+      data: Product[0],
     };
   } catch (e) {
     console.error(e);
     return {
       status: 500,
+      data: {} as Product,
     };
   }
+};
+
+export const findProductId = async (name: string) => {
+  name = name.replace("-", " ");
+  const { status, data } = await getProductByParameter("name", name);
+  return status === 200 ? data.id : 0;
 };
