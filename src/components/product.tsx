@@ -7,13 +7,13 @@ import { getProductByParameter } from "@/supabse/handler";
 import { Heart } from "./buttons";
 import Link from "next/link";
 
-const ProductCard = async ({ id }: { id: number }) => {
+const ProductCard = async ({ id, key }: { id: number; key?: number }) => {
   const { status, data } = await getProductByParameter("id", id);
   if (status === 500) {
     return <div>Product not found</div>;
   }
   return (
-    <Card className="h-98 w-60 rounded-sm p-6">
+    <Card className="h-98 w-60 rounded-sm p-6" key={key}>
       <Image
         src="http://via.placeholder.com/180x210"
         alt="placeholder"
