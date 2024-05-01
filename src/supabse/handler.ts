@@ -98,6 +98,21 @@ export const getProductByParameter = async (
   }
 };
 
+export const getProducts = async () => {
+  const { error, data } = await supabase.from("Products").select("*");
+  if (error) {
+    console.error(error);
+    return {
+      status: 500,
+      data: [] as Product[],
+    };
+  }
+  return {
+    status: 200,
+    data: data as Product[],
+  };
+};
+
 export const findProductId = async (name: string) => {
   name = name.replace("-", " ");
   const { status, data } = await getProductByParameter("name", name);
