@@ -1,5 +1,4 @@
 import { Product } from "@/components/product";
-import { findProductId } from "@/supabse/handler";
 
 const Page = ({ params }: { params: { product_name: string } }) => {
   return (

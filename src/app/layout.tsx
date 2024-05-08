@@ -5,6 +5,7 @@ import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import Header from "@/components/header";
+import StoreProvider from "./storeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,9 +32,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className + "flex min-h-screen"}>
-        <div className="h-full">{data}</div>
-        <Header />
-        {children}
+        <StoreProvider>
+          <div className="h-full">{data}</div>
+          <Header />
+          {children}
+        </StoreProvider>
         <SpeedInsights />
         <Analytics />
       </body>

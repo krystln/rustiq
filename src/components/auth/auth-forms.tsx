@@ -3,32 +3,27 @@
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { Suspense, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from "./ui/form";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+} from "../ui/form";
 
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
-import { Separator } from "./ui/separator";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
-import Image from "next/image";
-import Google from "/public/icons/google.svg";
-import Github from "/public/icons/github.svg";
 import { Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
+import { signIn } from "@/auth";
 
 const LoginForm = () => {
-  const router = useRouter();
+  // const router = useRouter();
 
   const formSChema = z.object({
     email: z
@@ -54,39 +49,9 @@ const LoginForm = () => {
   async function onSubmit(data: z.infer<typeof formSChema>) {
     // e.prevent.default();
     setIsPasswordVisible(false);
+    alert("signing in");
     try {
-      const session = await fetch("/api/v0.1/auth", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      switch (session.status) {
-        case 401:
-          form.setError("email", {
-            message: "Failed to login, check email & password",
-          });
-          form.setError("password", {
-            message: "Failed to login, check email & password",
-          });
-          break;
-
-        case 404:
-          form.setError("email", {
-            message:
-              "User not found, register or try Google/Github login instead.",
-          });
-          break;
-
-        case 500:
-          throw new Error(session.statusText);
-
-        case 200:
-          router.push("/");
-          break;
-      }
+      await signIn("credentials", data, { redirectTo: "/" });
     } catch (e) {
       form.setError("root", {
         message: "Internal error occured, please try again later.",
@@ -269,78 +234,4 @@ const RegisterForm = () => {
   );
 };
 
-const AuthForm = () => {
-  const register = useSearchParams().get("register");
-
-  return (
-    <Tabs
-      defaultValue={register === null ? "login" : "register"}
-      className="w-1/4"
-    >
-      <TabsList className="w-full bg-gray-950">
-        <TabsTrigger className="w-full" value="login">
-          Login
-        </TabsTrigger>
-        <TabsTrigger className="w-full" value="register">
-          Register
-        </TabsTrigger>
-      </TabsList>
-      <div className="my-2 rounded-md border p-4">
-        <TabsContent value="login" className="flex flex-col items-center">
-          <ThirdPartyAuth />
-          <div className="my-3.5 flex w-full items-center gap-2">
-            <Separator className="shrink" />
-            <p className="whitespace-nowrap text-sm text-gray-500">
-              or with email
-            </p>
-            <Separator className="shrink" />
-          </div>
-          <LoginForm />
-        </TabsContent>
-        <TabsContent value="register">
-          <RegisterForm />
-        </TabsContent>
-      </div>
-    </Tabs>
-  );
-};
-
-const ThirdPartyAuth = () => {
-  const router = useRouter();
-
-  return (
-    <div className="flex w-full grow gap-2">
-      <Button
-        variant="ghost"
-        className="flex grow gap-2"
-        onClick={() => {
-          router.push("/auth/google");
-        }}
-      >
-        <Image src={Google} alt=" " width={25} height={25} />
-        <p>Google</p>
-      </Button>
-      <Button
-        variant="ghost"
-        className="flex grow gap-2"
-        onClick={() => {
-          router.push("/auth/github");
-        }}
-      >
-        <Image src={Github} alt=" " width={30} height={30} />
-        <p>Github</p>
-      </Button>
-    </div>
-  );
-};
-
-const Auth = () => {
-  return (
-    <Suspense>
-      <AuthForm />
-    </Suspense>
-  );
-};
-
-export default Auth;
 export { LoginForm, RegisterForm };
