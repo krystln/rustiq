@@ -1,4 +1,4 @@
-import Auth from "@/components/auth/block";
+import Auth from "@/components/auth/auth";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
