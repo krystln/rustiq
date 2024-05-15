@@ -1,5 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
-import { GithubSignIn, GoogleSignIn } from "./third-party-auth";
+import ThirdPartyAuth from "./third-party-auth";
 import { Separator } from "../ui/separator";
 import { LoginForm, RegisterForm } from "./auth-forms";
 
@@ -21,9 +21,8 @@ const AuthForm = ({ register }: { register?: boolean }) => {
       <div className="my-2 rounded-md border p-4">
         <TabsContent value="login" className="flex flex-col items-center">
           <div className="flex w-full grow gap-2">
-            {/* <ThirdParty /> */}
-            <GoogleSignIn />
-            <GithubSignIn />
+            <ThirdPartyAuth provider="google" />
+            <ThirdPartyAuth provider="github" />
           </div>
           <div className="my-3.5 flex w-full items-center gap-2">
             <Separator className="shrink" />
