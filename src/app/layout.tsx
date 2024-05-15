@@ -24,16 +24,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  data,
+  modal,
 }: Readonly<{
   children: React.ReactNode;
-  data: React.ReactNode;
+  modal: React.ReactNode;
 }>) {
   return (
     <html lang="en">
       <body className={inter.className + "flex min-h-screen"}>
         <StoreProvider>
-          <div className="h-full">{data}</div>
+          <div className="h-full">{modal}</div>
           <Header />
           {children}
         </StoreProvider>
