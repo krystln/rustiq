@@ -2,24 +2,22 @@
 
 import { cookies } from "next/headers";
 
-export async function getUserData() {
-  const user = cookies().get("user")?.value ?? null;
-  return user;
+export async function getData(key: string) {
+  const data = cookies().get(key)?.value ?? null;
+  return data;
 }
 
-export async function deleteCookies() {
+export async function deleteCookies(key: string) {
   try {
-    cookies().delete("user");
-    console.log("Cookies deleted");
+    cookies().delete(key);
   } catch (e) {
     console.error(e);
   }
 }
 
-export async function createCookies() {
+export async function createCookies(key: string, value: string) {
   try {
-    cookies().set("currentUser", "test");
-    console.log("Cookies created");
+    cookies().set(key, value);
   } catch (e) {
     console.error(e);
   }
