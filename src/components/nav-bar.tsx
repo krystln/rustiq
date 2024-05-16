@@ -15,6 +15,7 @@ import GoogleIcon from "./utility";
 
 import type { Session, User } from "next-auth";
 import { logOut } from "@/lib/auth-functions";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 const Navbar: React.FC<{ session: Session | null }> = ({ session }) => {
   return (
@@ -64,7 +65,7 @@ const Navbar: React.FC<{ session: Session | null }> = ({ session }) => {
   );
 };
 
-const Login = () => {
+const Login: React.FC = () => {
   return (
     <div className="flex flex-wrap gap-2">
       <Link href={"/login"} className="w-full">
@@ -97,29 +98,35 @@ const Login = () => {
 
 const Profile: React.FC<{ data: User }> = ({ data }) => {
   return (
-    <div className="flex flex-col items-start gap-2 hover:bg-[#efefef]">
-      <Link href="/profile" className="flex items-center justify-center gap-2">
-        <Image
-          src={data.image!}
-          alt="profile"
-          height={50}
-          width={50}
-          className="rounded-full border border-black"
-        ></Image>
+    <div className="flex flex-col items-start gap-2">
+      <Link
+        href="/profile"
+        className="flex items-center justify-center gap-2 rounded-md p-2 hover:bg-[#efefef]"
+      >
+        <Avatar>
+          <AvatarImage src={data.image ?? undefined} />
+          <AvatarFallback>AN</AvatarFallback>
+        </Avatar>
         <div className="flex flex-col gap-0">
           <h1 className="">{data.name}</h1>
           <span className="text-xs text-zinc-400">{data.email}</span>
         </div>
       </Link>
       <div className="flex w-full flex-wrap">
-        <Button variant="ghost" className="w-1/2">
-          <Link href={"/cart"} className="flex items-center gap-2">
+        <Button variant="ghost" className="w-1/2 hover:bg-[#efefef]">
+          <Link
+            href={"/cart"}
+            className="flex h-full w-full items-center justify-center gap-2 rounded-md"
+          >
             <GoogleIcon className="scale-125">shopping_cart</GoogleIcon>
             <div>Cart</div>
           </Link>
         </Button>
-        <Button variant="ghost" className="w-1/2">
-          <Link href={"/cart"} className="flex items-center gap-2">
+        <Button variant="ghost" className="w-1/2 hover:bg-[#efefef]">
+          <Link
+            href={"/cart"}
+            className="flex h-full w-full items-center justify-center gap-2 rounded-md"
+          >
             <GoogleIcon className="scale-125">package_2</GoogleIcon>
             <div>Orders</div>
           </Link>
