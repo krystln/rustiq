@@ -3,36 +3,20 @@
 import {
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  NavigationMenuViewport,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
 
-import { useEffect, useState } from "react";
-import { getUserData } from "@/lib/cookie-handling";
 import { Button } from "./ui/button";
 import Image from "next/image";
 import GoogleIcon from "./utility";
 
-const Navbar: React.FC = () => {
-  // const user = cookies().get("currentUser") ?? null;
+import type { Session, User } from "next-auth";
+import { logOut } from "@/lib/auth-functions";
 
-  const [user, setUser] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetcher = async () => {
-      const userData = await getUserData();
-      setUser(userData);
-    };
-
-    fetcher();
-  }, []);
-
+const Navbar: React.FC<{ session: Session | null }> = ({ session }) => {
   return (
     <>
       <NavigationMenu>
@@ -71,7 +55,7 @@ const Navbar: React.FC = () => {
           <NavigationMenuItem className="">
             <NavigationMenuTrigger>You</NavigationMenuTrigger>
             <NavigationMenuContent className="flex min-w-64 max-w-64 flex-col items-center justify-center text-nowrap p-4">
-              {!user ? <Login /> : <Profile data={JSON.parse(user)} />}
+              {!session ? <Login /> : <Profile data={session.user!} />}
             </NavigationMenuContent>
           </NavigationMenuItem>
         </NavigationMenuList>
@@ -93,7 +77,7 @@ const Login = () => {
             <h1 className="text-lg">Login</h1>
             <span className="text-sm text-zinc-500">Get back to things!</span>
           </div>
-        </Button>{" "}
+        </Button>
       </Link>
       <Link href={"/login?register"} className="w-full">
         <Button
@@ -111,22 +95,19 @@ const Login = () => {
   );
 };
 
-const Profile = ({ data }: { data: any }) => {
+const Profile: React.FC<{ data: User }> = ({ data }) => {
   return (
-    <div className="flex flex-col items-start gap-2">
-      <Link
-        href="/profile"
-        className="group flex items-center justify-center gap-2"
-      >
+    <div className="flex flex-col items-start gap-2 hover:bg-[#efefef]">
+      <Link href="/profile" className="flex items-center justify-center gap-2">
         <Image
-          src={data.image}
+          src={data.image!}
           alt="profile"
           height={50}
           width={50}
-          className="rounded-full border border-black group-hover:border-2"
+          className="rounded-full border border-black"
         ></Image>
         <div className="flex flex-col gap-0">
-          <h1 className="group-hover:font-semibold">{data.name}</h1>
+          <h1 className="">{data.name}</h1>
           <span className="text-xs text-zinc-400">{data.email}</span>
         </div>
       </Link>
@@ -143,11 +124,13 @@ const Profile = ({ data }: { data: any }) => {
             <div>Orders</div>
           </Link>
         </Button>
-        <Button variant="destructive" className="mt-2 w-full">
-          <Link href={"/cart"} className="flex items-center gap-2">
-            <GoogleIcon className="scale-125">logout</GoogleIcon>
-            <div>Logout</div>
-          </Link>
+        <Button
+          variant="destructive"
+          className="mt-2 w-full"
+          onClick={() => logOut()}
+        >
+          <GoogleIcon className="scale-125">logout</GoogleIcon>
+          <div>Logout</div>
         </Button>
       </div>
     </div>
