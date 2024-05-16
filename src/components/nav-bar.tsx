@@ -10,7 +10,6 @@ import {
 import Link from "next/link";
 
 import { Button } from "./ui/button";
-import Image from "next/image";
 import GoogleIcon from "./utility";
 
 import type { Session, User } from "next-auth";
@@ -108,8 +107,8 @@ const Profile: React.FC<{ data: User }> = ({ data }) => {
           <AvatarFallback>AN</AvatarFallback>
         </Avatar>
         <div className="flex flex-col gap-0">
-          <h1 className="">{data.name}</h1>
-          <span className="text-xs text-zinc-400">{data.email}</span>
+          <h1 className="">{data.name ?? ""}</h1>
+          <span className="text-xs text-zinc-400">{data.email ?? ""}</span>
         </div>
       </Link>
       <div className="flex w-full flex-wrap">
