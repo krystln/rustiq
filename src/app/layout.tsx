@@ -32,11 +32,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className + "flex min-h-screen"}>
-        <StoreProvider>
-          <div className="h-full">{modal}</div>
-          <Header />
-          {children}
-        </StoreProvider>
+        {/* <StoreProvider> */}
+        <div className="h-full">{modal}</div>
+        <Header />
+        {children}
+        {/* </StoreProvider> */}
         <SpeedInsights />
         <Analytics />
       </body>
