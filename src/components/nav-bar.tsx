@@ -133,7 +133,7 @@ const Profile: React.FC<{ data: User }> = ({ data }) => {
         <Button
           variant="destructive"
           className="mt-2 w-full"
-          // onClick={() => logOut()}
+          onClick={() => logOut()}
         >
           <GoogleIcon className="scale-125">logout</GoogleIcon>
           <div>Logout</div>
