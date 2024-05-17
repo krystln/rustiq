@@ -28,8 +28,8 @@ const Login: React.FC = () => {
           Icon: UserPlusIcon,
           link: "/login?register",
         },
-      ].map((menu) => (
-        <NavMenuContent menuContent={menu} />
+      ].map((menu, index) => (
+        <NavMenuContent menuContent={menu} key={index} />
       ))}
     </div>
   );
