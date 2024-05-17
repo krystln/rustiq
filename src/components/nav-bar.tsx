@@ -7,14 +7,18 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import Link from "next/link";
 
-import { Button } from "./ui/button";
-import GoogleIcon from "./utility";
-
-import type { Session, User } from "next-auth";
-import { logOut } from "@/lib/auth-functions";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import type { Session } from "next-auth";
+import {
+  BadgePercentIcon,
+  HomeIcon,
+  LibraryIcon,
+  MessageCircleQuestionIcon,
+  PaletteIcon,
+  PencilRulerIcon,
+  ShapesIcon,
+} from "lucide-react";
+import { Login, NavMenuContent, Profile } from "./nav-bar-content";
 
 const Navbar: React.FC<{ session: Session | null }> = ({ session }) => {
   return (
@@ -27,26 +31,7 @@ const Navbar: React.FC<{ session: Session | null }> = ({ session }) => {
                 <NavigationMenuTrigger>{menu.title}</NavigationMenuTrigger>
                 <NavigationMenuContent className="flex min-w-64 flex-wrap p-2">
                   {menu.submenu.map((submenu) => (
-                    <Link
-                      href={submenu.link}
-                      key={submenu.title}
-                      className="w-full"
-                    >
-                      <Button
-                        variant="ghost"
-                        className="flex h-fit w-full items-center justify-start gap-4"
-                      >
-                        <GoogleIcon className="scale-125">
-                          {submenu.icon}
-                        </GoogleIcon>
-                        <div className="flex flex-col items-start gap-0">
-                          {submenu.title}
-                          <span className="text-wrap text-left text-zinc-400">
-                            {submenu.subtitle}
-                          </span>
-                        </div>
-                      </Button>
-                    </Link>
+                    <NavMenuContent menuContent={submenu} />
                   ))}
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -64,85 +49,6 @@ const Navbar: React.FC<{ session: Session | null }> = ({ session }) => {
   );
 };
 
-const Login: React.FC = () => {
-  return (
-    <div className="flex flex-wrap gap-2">
-      <Link href={"/login"} className="w-full">
-        <Button
-          variant="ghost"
-          className="text-md flex w-full justify-start gap-4 py-8"
-        >
-          <GoogleIcon className="scale-125">login</GoogleIcon>
-          <div className="flex flex-col items-start">
-            <h1 className="text-lg">Login</h1>
-            <span className="text-sm text-zinc-500">Get back to things!</span>
-          </div>
-        </Button>
-      </Link>
-      <Link href={"/login?register"} className="w-full">
-        <Button
-          variant="ghost"
-          className="text-md flex w-full justify-start gap-4 py-8"
-        >
-          <GoogleIcon className="scale-125">person_add</GoogleIcon>
-          <div className="flex flex-col items-start">
-            <h1 className="text-lg">Register</h1>
-            <span className="text-sm text-zinc-500">Add a new adventure!</span>
-          </div>
-        </Button>
-      </Link>
-    </div>
-  );
-};
-
-const Profile: React.FC<{ data: User }> = ({ data }) => {
-  return (
-    <div className="flex flex-col items-start gap-2">
-      <Link
-        href="/profile"
-        className="flex items-center justify-center gap-2 rounded-md p-2 hover:bg-[#efefef]"
-      >
-        <Avatar>
-          <AvatarImage src={data.image ?? undefined} />
-          <AvatarFallback>AN</AvatarFallback>
-        </Avatar>
-        <div className="flex flex-col gap-0">
-          <h1 className="">{data.name ?? ""}</h1>
-          <span className="text-xs text-zinc-400">{data.email ?? ""}</span>
-        </div>
-      </Link>
-      <div className="flex w-full flex-wrap">
-        <Button variant="ghost" className="w-1/2 hover:bg-[#efefef]">
-          <Link
-            href={"/cart"}
-            className="flex h-full w-full items-center justify-center gap-2 rounded-md"
-          >
-            <GoogleIcon className="scale-125">shopping_cart</GoogleIcon>
-            <div>Cart</div>
-          </Link>
-        </Button>
-        <Button variant="ghost" className="w-1/2 hover:bg-[#efefef]">
-          <Link
-            href={"/cart"}
-            className="flex h-full w-full items-center justify-center gap-2 rounded-md"
-          >
-            <GoogleIcon className="scale-125">package_2</GoogleIcon>
-            <div>Orders</div>
-          </Link>
-        </Button>
-        <Button
-          variant="destructive"
-          className="mt-2 w-full"
-          onClick={() => logOut()}
-        >
-          <GoogleIcon className="scale-125">logout</GoogleIcon>
-          <div>Logout</div>
-        </Button>
-      </div>
-    </div>
-  );
-};
-
 const navMenu = [
   {
     title: "Shop",
@@ -151,25 +57,25 @@ const navMenu = [
         link: "/",
         title: "By Room",
         subtitle: "Living Room, Bedroom, Kitchen",
-        icon: "home",
+        Icon: HomeIcon,
       },
       {
         link: "/",
         title: "By Type",
         subtitle: "Sofas, Beds, Tables, etc.",
-        icon: "category",
+        Icon: ShapesIcon,
       },
       {
         link: "/",
         title: "Special Collections",
         subtitle: "Handpicked for you!",
-        icon: "collections",
+        Icon: LibraryIcon,
       },
       {
         link: "/",
         title: "Deals",
         subtitle: "Discounts, Offers, and more!",
-        icon: "local_offer",
+        Icon: BadgePercentIcon,
       },
     ],
   },
@@ -180,19 +86,19 @@ const navMenu = [
         link: "/",
         title: "Interior Design",
         subtitle: "Get your dream home!",
-        icon: "design_services",
+        Icon: PencilRulerIcon,
       },
       {
         link: "/",
         title: "Custom Designs",
         subtitle: "Get what you want!",
-        icon: "palette",
+        Icon: PaletteIcon,
       },
       {
         link: "/",
         title: "Contact Us",
         subtitle: "Get in touch with us!",
-        icon: "contact_support",
+        Icon: MessageCircleQuestionIcon,
       },
     ],
   },
