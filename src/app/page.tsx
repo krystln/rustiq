@@ -1,8 +1,10 @@
+import HomeCarousel from "@/components/home-carousel";
+
 export default async function Home() {
   return (
     <main className="h-full">
-      <div className="flex h-full flex-wrap items-center justify-center gap-12">
-        <div className="h-[450px] w-1/2 bg-[#efefef]"></div>
+      <div className="flex h-[450px] w-full justify-start px-20 py-12">
+        <HomeCarousel />
       </div>
     </main>
   );
