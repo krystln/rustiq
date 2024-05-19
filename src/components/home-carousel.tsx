@@ -35,7 +35,7 @@ const HomeCarousel = () => {
               <Image
                 width={200}
                 height={20}
-                className="h-full w-full rounded-sm border object-contain"
+                className="h-[450px] w-full rounded-sm border object-contain"
                 src={`/products/${index + 1}/1.webp`}
                 alt="Loading..."
               />
