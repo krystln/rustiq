@@ -314,6 +314,7 @@ const DotButton = React.forwardRef<
     ></Button>
   );
 });
+DotButton.displayName = "DotButton";
 
 const DotButtons = React.forwardRef<HTMLDivElement, { className?: string }>(
   ({ className }, ref) => {
@@ -338,6 +339,7 @@ const DotButtons = React.forwardRef<HTMLDivElement, { className?: string }>(
     );
   },
 );
+DotButtons.displayName = "DotButtons";
 
 export {
   type CarouselApi,
