@@ -20,7 +20,7 @@ const TurnCard: React.FC<TurnCardProps> = ({
 
   return (
     <div
-      className={cn("relative", className)}
+      className={cn("relative h-full w-full", className)}
       {...props}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}

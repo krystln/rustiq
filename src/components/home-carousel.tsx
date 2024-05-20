@@ -11,11 +11,12 @@ import {
 } from "./ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
-const HomeCarousel = () => {
+const HomeCarousel: React.FC<{ className?: string }> = ({ className }) => {
   return (
     <Carousel
-      className="h-fit w-1/3 rounded-sm"
+      className={cn("h-fit w-1/3 rounded-sm", className)}
       opts={{
         loop: true,
         align: "center",
