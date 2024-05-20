@@ -7,11 +7,13 @@ interface TurnCardProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
   direction?: "vertical" | "horizontal";
   children: [React.ReactNode, React.ReactNode];
+  perspective?: number;
 }
 const TurnCard: React.FC<TurnCardProps> = ({
   className,
   direction,
   children,
+  perspective,
   ...props
 }) => {
   const [isHover, setIsHover] = useState<boolean>(false);
@@ -29,8 +31,8 @@ const TurnCard: React.FC<TurnCardProps> = ({
             ? {
                 transform:
                   direction === "vertical"
-                    ? "rotate3d(1, 0, 0, 90deg) perspective(100px)"
-                    : "rotate3d(0, 1, 0, 90deg) perspective(100px)",
+                    ? `rotate3d(1, 0, 0, 90deg) perspective(${perspective ?? 100}px)`
+                    : `rotate3d(0, 1, 0, 90deg) perspective(${perspective ?? 100}px)`,
               }
             : {}
         }
@@ -47,8 +49,8 @@ const TurnCard: React.FC<TurnCardProps> = ({
             ? {
                 transform:
                   direction === "vertical"
-                    ? "rotate3d(1, 0, 0, -90deg) perspective(100px)"
-                    : "rotate3d(0, 1, 0, -90deg) perspective(100px)",
+                    ? `rotate3d(1, 0, 0, -90deg) perspective(${perspective ?? 100}px)`
+                    : `rotate3d(0, 1, 0, -90deg) perspective(${perspective ?? 100}px)`,
               }
             : {}
         }
