@@ -11,6 +11,8 @@ import {
   StripeAddressElementOptions,
   StripePaymentElementOptions,
 } from "@stripe/stripe-js";
+import { AlertCircleIcon, LoaderIcon } from "lucide-react";
+import { Button } from "./ui/button";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -52,32 +54,22 @@ export default function CheckoutForm() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-
     if (!stripe || !elements) {
-      // Stripe.js hasn't yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
 
     setIsLoading(true);
-
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000/confirmation",
+        return_url: `${process.env.NEXT_PUBLIC_BASE_URL}/confirmation`,
       },
     });
 
-    // This point will only be reached if there is an immediate error when
-    // confirming the payment. Otherwise, your customer will be redirected to
-    // your `return_url`. For some payment methods like iDEAL, your customer will
-    // be redirected to an intermediate site first to authorize the payment, then
-    // redirected to the `return_url`.
     if (error.type === "card_error" || error.type === "validation_error") {
       setMessage(error.message ?? null);
     } else {
-      setMessage("An unexpected error occurred." + error.message ?? null);
+      setMessage("An unexpected error occurred. Please try again later.");
     }
 
     setIsLoading(false);
@@ -86,6 +78,10 @@ export default function CheckoutForm() {
 
   const paymentElementOptions: StripePaymentElementOptions = {
     layout: "tabs",
+    applePay: {},
+    business: {
+      name: "Example, Inc.",
+    },
   };
 
   const addressElementOptions: StripeAddressElementOptions = {
@@ -93,16 +89,30 @@ export default function CheckoutForm() {
   };
 
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
+    <form
+      id="payment-form"
+      onSubmit={handleSubmit}
+      className="flex w-1/3 flex-col items-center"
+    >
       <PaymentElement id="payment-element" options={paymentElementOptions} />
       <AddressElement id="address-element" options={addressElementOptions} />
-      <button disabled={isLoading || !stripe || !elements} id="submit">
-        <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
+      <Button
+        disabled={isLoading || !stripe || !elements}
+        type="submit"
+        variant="default"
+        className="mt-4 w-28 "
+      >
+        <span>
+          {isLoading ? <LoaderIcon className="animate-spin" /> : "Pay now"}
         </span>
-      </button>
+      </Button>
       {/* Show any error or success messages */}
-      {message && <div id="payment-message">{message}</div>}
+      {message && (
+        <span className="flex items-center justify-center gap-1 text-red-600">
+          <AlertCircleIcon />
+          {message}
+        </span>
+      )}
     </form>
   );
 }
