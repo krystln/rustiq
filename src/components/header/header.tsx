@@ -1,9 +1,9 @@
 "use server";
 
 import Navbar from "./nav-bar";
-import Searchbar from "./search-bar";
+import Searchbar from "../search-bar";
 import Link from "next/link";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { auth } from "@/auth";
 
 const Header = async () => {

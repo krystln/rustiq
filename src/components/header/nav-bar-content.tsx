@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import {
   LogInIcon,
   LogOutIcon,
@@ -8,7 +8,7 @@ import {
   ShoppingCartIcon,
   UserPlusIcon,
 } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { logOut } from "@/lib/auth-functions";
 import type { User } from "next-auth";
 
