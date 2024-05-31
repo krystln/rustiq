@@ -19,11 +19,20 @@ const Page = ({ params }: { params: { product_name: string } }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-end justify-center bg-gray-900 bg-opacity-50">
-      <div className="flex h-full w-1/3 flex-col items-start overflow-y-auto overflow-x-clip border border-black bg-white p-4">
+      <div className="flex h-full w-1/3 flex-col items-start overflow-auto overflow-y-auto overflow-x-clip border border-black bg-white p-8 pb-20">
         <Button variant="ghost" className="mb-4" onClick={() => router.back()}>
           <GoogleIcon>close</GoogleIcon>
         </Button>
         <Cart />
+        <Button
+          className="w-full rounded-sm"
+          onClick={() => {
+            router.replace("/checkout");
+            router.refresh();
+          }}
+        >
+          Proceed to Checkout
+        </Button>
       </div>
     </div>
   );
