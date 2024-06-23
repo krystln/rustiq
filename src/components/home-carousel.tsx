@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils";
 const HomeCarousel: React.FC<{ className?: string }> = ({ className }) => {
   return (
     <Carousel
-      className={cn("h-fit w-1/3 rounded-sm", className)}
+      className={cn("h-fit w-1/3", className)}
       opts={{
         loop: true,
         align: "center",
@@ -36,7 +36,7 @@ const HomeCarousel: React.FC<{ className?: string }> = ({ className }) => {
               <Image
                 width={200}
                 height={20}
-                className="h-[450px] w-full rounded-sm border object-contain"
+                className="h-[450px] w-full border border-black object-contain"
                 src={`/products/${index + 1}/1.webp`}
                 alt="Loading..."
               />
@@ -44,8 +44,8 @@ const HomeCarousel: React.FC<{ className?: string }> = ({ className }) => {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="left-0 top-full rounded-sm" />
-      <CarouselNext className="left-10 top-full rounded-sm" />
+      <CarouselPrevious className="left-0 top-full rounded-none border-black" />
+      <CarouselNext className="left-10 top-full rounded-none border-black" />
       <DotButtons className="absolute bottom-4 flex w-full items-end justify-center gap-2" />
     </Carousel>
   );

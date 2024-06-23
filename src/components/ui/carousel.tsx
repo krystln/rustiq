@@ -330,8 +330,8 @@ const DotButtons = React.forwardRef<HTMLDivElement, { className?: string }>(
             key={index}
             onClick={() => onDotButtonClick(index)}
             className={cn(
-              "h-4 w-4 rounded-full border-2 border-gray-200",
-              index === selectedIndex ? "bg-[#efefef]" : "",
+              "h-4 w-4 rounded-full border border-black",
+              index === selectedIndex ? "bg-[#000]" : "",
             )}
           />
         ))}

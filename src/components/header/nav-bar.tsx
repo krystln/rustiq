@@ -29,7 +29,7 @@ const Navbar: React.FC<{ session: Session | null }> = ({ session }) => {
             return (
               <NavigationMenuItem key={index}>
                 <NavigationMenuTrigger>{menu.title}</NavigationMenuTrigger>
-                <NavigationMenuContent className="flex min-w-64 flex-wrap p-2">
+                <NavigationMenuContent className="flex min-w-64 flex-wrap rounded-none p-2">
                   {menu.submenu.map((submenu, index) => (
                     <NavMenuContent menuContent={submenu} key={index} />
                   ))}
@@ -39,7 +39,7 @@ const Navbar: React.FC<{ session: Session | null }> = ({ session }) => {
           })}
           <NavigationMenuItem className="">
             <NavigationMenuTrigger>You</NavigationMenuTrigger>
-            <NavigationMenuContent className="flex min-w-64 max-w-64 flex-col items-center justify-center text-nowrap p-4">
+            <NavigationMenuContent className="flex min-w-64 max-w-64 flex-col items-center justify-center text-nowrap rounded-none p-4">
               {!session ? <Login /> : <Profile data={session.user!} />}
             </NavigationMenuContent>
           </NavigationMenuItem>

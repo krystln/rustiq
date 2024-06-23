@@ -40,7 +40,7 @@ const Profile: React.FC<{ data: User }> = ({ data }) => {
     <div className="flex flex-col items-start gap-2">
       <Link
         href="/profile"
-        className="flex items-center justify-center gap-2 rounded-md p-2 hover:bg-[#efefef]"
+        className="flex items-center justify-center gap-2 rounded-none p-2 hover:bg-[#efefef]"
       >
         <Avatar>
           <AvatarImage src={data.image ?? undefined} />
@@ -52,31 +52,37 @@ const Profile: React.FC<{ data: User }> = ({ data }) => {
         </div>
       </Link>
       <div className="flex w-full flex-wrap">
-        <Button variant="ghost" className="w-1/2 hover:bg-[#efefef]">
+        <Button
+          variant="ghost"
+          className="w-1/2 rounded-none hover:bg-[#efefef]"
+        >
           <Link
             href={"/cart"}
             className="flex h-full w-full items-center justify-center gap-2 rounded-md"
           >
-            <ShoppingCartIcon size={25} />
+            <ShoppingCartIcon size={20} />
             <div>Cart</div>
           </Link>
         </Button>
-        <Button variant="ghost" className="w-1/2 hover:bg-[#efefef]">
+        <Button
+          variant="ghost"
+          className="w-1/2 rounded-none hover:bg-[#efefef]"
+        >
           <Link
             href={"/cart"}
             className="flex h-full w-full items-center justify-center gap-2 rounded-md"
           >
-            <PackageIcon size={25} />
+            <PackageIcon size={20} />
             <div>Orders</div>
           </Link>
         </Button>
         <Button
           variant="destructive"
-          className="mt-2 w-full"
+          className="mt-2 w-full rounded-none"
           onClick={() => logOut()}
         >
-          <LogOutIcon size={25} />
-          <div>Logout</div>
+          <LogOutIcon size={20} />
+          <div className="ml-1">Logout</div>
         </Button>
       </div>
     </div>
@@ -93,10 +99,10 @@ const NavMenuContent: React.FC<{
 }> = ({ menuContent: { title, link, Icon, subtitle } }) => {
   return (
     <>
-      <Link href={link} key={title} className="w-full">
+      <Link href={link} key={title} className="w-full rounded-none">
         <Button
           variant="ghost"
-          className="flex h-fit w-full items-center justify-start gap-4"
+          className="flex h-fit w-full items-center justify-start gap-4 rounded-none"
         >
           <Icon size={25} />
           <div className="flex flex-col items-start gap-0">

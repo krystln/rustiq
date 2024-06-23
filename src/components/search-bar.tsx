@@ -65,7 +65,11 @@ const Searchbar = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input {...field} placeholder="Search" />
+                  <Input
+                    {...field}
+                    placeholder="Search"
+                    className="rounded-none"
+                  />
                 </FormControl>
               </FormItem>
             )}
