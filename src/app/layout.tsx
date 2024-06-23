@@ -6,6 +6,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import Header from "@/components/header/header";
 import StoreProvider from "./storeProvider";
+import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className + "flex min-h-screen"}>
+      <body className={cn(inter.className, "flex min-h-screen flex-col")}>
         <StoreProvider>
           <div className="h-full">{modal}</div>
           <Header />
