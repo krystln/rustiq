@@ -25,7 +25,7 @@ const HomeCarousel: React.FC<{ className?: string }> = ({ className }) => {
       plugins={[
         Autoplay({
           delay: 4000,
-          stopOnHover: true,
+          stopOnMouseEnter: true,
         }),
       ]}
     >
