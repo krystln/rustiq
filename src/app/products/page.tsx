@@ -12,8 +12,8 @@ const Page = async ({ params }: { params: { product_name: string } }) => {
       <div className="flex w-3/4 flex-wrap justify-evenly gap-10">
         {error
           ? "Products Unavailable"
-          : data.map((product) => {
-              return <Card productData={product} />;
+          : data.map((product, index) => {
+              return <Card productData={product} key={index} />;
             })}
       </div>
     </div>

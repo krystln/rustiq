@@ -1,11 +1,7 @@
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import GoogleIcon from "@/components/utility";
-import { Heart } from "@/components/buttons";
-import Link from "next/link";
-import { ReactElement } from "react";
 
 const ProductCard = async ({ id }: { id: number }) => {
   return (

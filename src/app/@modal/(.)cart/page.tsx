@@ -1,7 +1,6 @@
 "use client";
 
 import Cart from "@/components/cart";
-import { Product } from "@/components/product";
 import { Button } from "@/components/ui/button";
 import GoogleIcon from "@/components/utility";
 import { useRouter } from "next/navigation";
