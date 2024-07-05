@@ -1,12 +1,12 @@
 "use client";
 
-import { Product } from "@/components/product";
+import Card from "@/components/product/card";
 import { Button } from "@/components/ui/button";
 import GoogleIcon from "@/components/utility";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-const Page = ({ params }: { params: { product_name: string } }) => {
+const Page = ({ params }: { params: { product_id: string } }) => {
   const router = useRouter();
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const Page = ({ params }: { params: { product_name: string } }) => {
         <Button onClick={() => router.back()} variant="ghost" className="">
           <GoogleIcon className="scale-125">arrow_back</GoogleIcon>
         </Button>
-        <Product name={params.product_name.replaceAll("-", " ")} />
+        <div>product ? {params.product_id}</div>
       </div>
     </div>
   );
