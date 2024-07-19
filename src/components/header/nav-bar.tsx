@@ -54,25 +54,25 @@ const navMenu = [
     title: "Shop",
     submenu: [
       {
-        link: "/",
+        link: "/products?filter=room",
         title: "By Room",
         subtitle: "Living Room, Bedroom, Kitchen",
         Icon: HomeIcon,
       },
       {
-        link: "/",
+        link: "/products?filter=type",
         title: "By Type",
         subtitle: "Sofas, Beds, Tables, etc.",
         Icon: ShapesIcon,
       },
       {
-        link: "/",
+        link: "/products?filter=collection",
         title: "Special Collections",
         subtitle: "Handpicked for you!",
         Icon: LibraryIcon,
       },
       {
-        link: "/",
+        link: "/products?filter=discount",
         title: "Deals",
         subtitle: "Discounts, Offers, and more!",
         Icon: BadgePercentIcon,
@@ -83,19 +83,19 @@ const navMenu = [
     title: "Services",
     submenu: [
       {
-        link: "/",
+        link: "/designs",
         title: "Interior Design",
         subtitle: "Get your dream home!",
         Icon: PencilRulerIcon,
       },
       {
-        link: "/",
+        link: "/designs/custom",
         title: "Custom Designs",
         subtitle: "Get what you want!",
         Icon: PaletteIcon,
       },
       {
-        link: "/",
+        link: "/contact",
         title: "Contact Us",
         subtitle: "Get in touch with us!",
         Icon: MessageCircleQuestionIcon,
